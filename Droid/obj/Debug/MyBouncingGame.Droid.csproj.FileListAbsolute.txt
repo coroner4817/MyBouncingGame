@@ -26,3 +26,31 @@ D:\Android Game\1MyProject\MyBouncingGame\Droid\obj\Debug\res\drawable-xxhdpi\ic
 D:\Android Game\1MyProject\MyBouncingGame\Droid\obj\Debug\R.cs.flag
 D:\Android Game\1MyProject\MyBouncingGame\Droid\obj\Debug\uploadflags.txt
 D:\Android Game\1MyProject\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.csprojResolveAssemblyReference.cache
+D:\Github\MyBouncingGame\Droid\bin\Debug\MyBouncingGame.Droid.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\MyBouncingGame.Droid.pdb
+D:\Github\MyBouncingGame\Droid\bin\Debug\com.companyname.mybouncinggame.apk
+D:\Github\MyBouncingGame\Droid\bin\Debug\com.companyname.mybouncinggame-Signed.apk
+D:\Github\MyBouncingGame\Droid\bin\Debug\box2d.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\CocosSharp.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\FormsViewGroup.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\Lidgren.Network.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\MonoGame.Framework.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Android.Support.v4.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Forms.Core.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Forms.Platform.Android.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Forms.Xaml.dll
+D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Forms.Core.xml
+D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Forms.Xaml.xml
+D:\Github\MyBouncingGame\Droid\bin\Debug\CocosSharp.xml
+D:\Github\MyBouncingGame\Droid\bin\Debug\Lidgren.Network.xml
+D:\Github\MyBouncingGame\Droid\bin\Debug\MonoGame.Framework.xml
+D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.csprojResolveAssemblyReference.cache
+D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.dll
+D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.pdb
+D:\Github\MyBouncingGame\Droid\obj\Debug\android\bin\com.companyname.mybouncinggame.apk
+D:\Github\MyBouncingGame\Droid\obj\Debug\res\drawable\icon.png
+D:\Github\MyBouncingGame\Droid\obj\Debug\res\drawable-hdpi\icon.png
+D:\Github\MyBouncingGame\Droid\obj\Debug\res\drawable-xhdpi\icon.png
+D:\Github\MyBouncingGame\Droid\obj\Debug\res\drawable-xxhdpi\icon.png
+D:\Github\MyBouncingGame\Droid\obj\Debug\R.cs.flag
+D:\Github\MyBouncingGame\Droid\obj\Debug\uploadflags.txt

@@ -2,7 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MyBouncingGame\GameAppDelegate.cs">
     <Files>
-      <File FileName="MyBouncingGame\GameAppDelegate.cs" Line="53" Column="37" />
+      <File FileName="MyBouncingGame\GameAppDelegate.cs" Line="1" Column="1" />
+      <File FileName="MyBouncingGame\Scenes\SplashScene.cs" Line="37" Column="49" />
+      <File FileName="MyBouncingGame\Scenes\GamePlayScene.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

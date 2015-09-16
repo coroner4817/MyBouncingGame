@@ -101,5 +101,7 @@
     <AndroidAsset Include="Assets\Content\fonts\alphbeta.ttf" />
     <AndroidAsset Include="Assets\Content\fonts\arial-22.xnb" />
     <AndroidAsset Include="Assets\Content\images\background.png" />
+    <AndroidAsset Include="Assets\Content\images\Splash1.png" />
+    <AndroidAsset Include="Assets\Content\images\Splash2.png" />
   </ItemGroup>
 </Project>

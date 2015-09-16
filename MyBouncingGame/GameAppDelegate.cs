@@ -32,9 +32,10 @@ namespace MyBouncingGame
 
 			mainWindow.AddSceneDirector (director);
 
-			var scene = new GamePlaySceneTest (mainWindow);
+			var scene = new SplashScene (mainWindow);
 			director.RunWithScene (scene);
 
+			scene.PerformSplash ();
 		}
 
 		//返回键把游戏最小化
@@ -50,7 +51,7 @@ namespace MyBouncingGame
 			
 		public static void GoToGameScene()
 		{
-			var scene = new GamePlaySceneTest (mainWindow);
+			var scene = new GamePlayScene (mainWindow);
 			director.ReplaceScene (scene);
 		}
 	}

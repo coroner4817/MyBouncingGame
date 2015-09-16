@@ -10,13 +10,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GameAppDelegate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GamePlayScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\BallEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\PhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ConstantData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GamePlaySceneTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\PaddleEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\TouchScreenInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GamePlayScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\SplashScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
