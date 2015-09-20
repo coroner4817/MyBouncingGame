@@ -281,11 +281,6 @@ namespace MyBouncingGame.Scenes
 		{
 			input = new TouchScreenInput (gameplayLayer,mPaddle);
 		}
-
-		public override void KeyBackClicked ()
-		{
-			GameAppDelegate.GoToGameStartPage ();
-		}
 			
 	}
 }

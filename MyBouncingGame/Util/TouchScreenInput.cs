@@ -12,6 +12,8 @@ namespace MyBouncingGame.Util
 		CCLayer owner;
 		PhysicsEntity mControledEntity;
 
+		CCPoint locationOnScreen;
+
 		public TouchScreenInput (CCLayer Owner,PhysicsEntity controledEntity)
 		{
 			this.owner = Owner;
@@ -25,16 +27,15 @@ namespace MyBouncingGame.Util
 
 		void HandleTouchesMoved (System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
 		{
-
-			var locationOnScreen = touches [0].Location;
+			locationOnScreen = touches [0].Location;
 
 			if (locationOnScreen.X < owner.VisibleBoundsWorldspace.LowerLeft.X)
 			{
-				locationOnScreen.X = owner.VisibleBoundsWorldspace.LowerLeft.X+50.0f;
+				locationOnScreen.X = owner.VisibleBoundsWorldspace.LowerLeft.X + 50.0f;
 			}
 			if (locationOnScreen.X > owner.VisibleBoundsWorldspace.UpperRight.X)
 			{
-				locationOnScreen.X = owner.VisibleBoundsWorldspace.UpperRight.X-50.0f;
+				locationOnScreen.X = owner.VisibleBoundsWorldspace.UpperRight.X - 50.0f;
 			}
 
 			mControledEntity.PositionX = locationOnScreen.X;
@@ -45,7 +46,7 @@ namespace MyBouncingGame.Util
 		{
 			if (touches.Count > 0)
 			{
-				// Perform touch handling here
+				
 			}
 		}
 

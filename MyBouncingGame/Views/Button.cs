@@ -18,10 +18,12 @@ namespace MyBouncingGame.Views
 
 		CCSprite sprite;
 		CCLabel label;
+		CCLayer ownerLayer;
 
 		string btntext;
 
 		public event EventHandler Clicked;
+		CCEventListenerTouchAllAtOnce touchListener;
 
 		public ButtonStyle ButtonStyle
 		{
@@ -72,6 +74,8 @@ namespace MyBouncingGame.Views
 
 		public Button(CCLayer layer)
 		{
+			ownerLayer = layer;
+
 			// Give it a default texture, may get changed in ButtonStyle
 			sprite = new CCSprite ("ViewsImage/btnBase.png");
 			sprite.IsAntialiased = false;
@@ -82,12 +86,10 @@ namespace MyBouncingGame.Views
 			this.AddChild (label);
 
 			//touch event
-			var touchListener = new CCEventListenerTouchAllAtOnce ();
+			touchListener = new CCEventListenerTouchAllAtOnce ();
 			touchListener.OnTouchesBegan = HandleTouchesBegan;
 
-			//layer add click event listener
-			//when user click layer, touchListener will be launched
-			layer.AddEventListener (touchListener);
+			ownerLayer.AddEventListener (touchListener);
 		}
 
 		private void HandleTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
@@ -112,6 +114,11 @@ namespace MyBouncingGame.Views
 					}
 				}
 			}
+		}
+
+		public void RemoveBtnTouchListener()
+		{
+			ownerLayer.RemoveEventListener (touchListener);
 		}
 	}
 }

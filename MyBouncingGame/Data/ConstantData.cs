@@ -7,7 +7,7 @@ namespace MyBouncingGame.Data
 	{
 		CCLayer mLayer;
 
-		const float gravity=140;
+		const float gravity=150;
 		
 		public ConstantData (CCLayer layer)
 		{

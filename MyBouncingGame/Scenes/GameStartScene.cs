@@ -32,11 +32,12 @@ namespace MyBouncingGame.Scenes
 		private void addBackgroundLabel()
 		{
 			gameStartBackground = new CCSprite ("images/GameStartSceneBackground.png");
-			gameStartBackground.Position = ContentSize.Center;
+			gameStartBackground.PositionX = ContentSize.Center.X;
+			gameStartBackground.PositionY = ContentSize.Center.Y + 150.0f;
 			gameStartBackground.IsAntialiased = false;
 			gameStartLayer.AddChild (gameStartBackground);
 
-			gameStartTittle = new CCLabel ("Bouncing King", "fonts/go3v2.ttf", 75, CCLabelFormat.SystemFont);
+			gameStartTittle = new CCLabel ("Bouncing King", "fonts/go3v2.ttf", 80, CCLabelFormat.SystemFont);
 			gameStartTittle.Color = new CCColor3B (0, 0, 0);
 			gameStartTittle.PositionX = gameStartLayer.VisibleBoundsWorldspace.Center.X;
 			gameStartTittle.PositionY = gameStartLayer.VisibleBoundsWorldspace.Center.Y + 120.0f;
@@ -48,16 +49,20 @@ namespace MyBouncingGame.Scenes
 			goToLevelSceneBtn = new Button (gameStartLayer);
 			goToLevelSceneBtn.ButtonStyle = ButtonStyle.confirmBtn1;
 			goToLevelSceneBtn.btnText = "Start";
-			goToLevelSceneBtn.PositionX = gameStartLayer.VisibleBoundsWorldspace.UpperRight.X - 150.0f;
+			goToLevelSceneBtn.PositionX = gameStartLayer.VisibleBoundsWorldspace.UpperRight.X - 200.0f;
 			goToLevelSceneBtn.PositionY = gameStartLayer.VisibleBoundsWorldspace.LowerLeft.Y + 230.0f;
+
+			//goToLevelSceneBtn.Position = gameStartLayer.VisibleBoundsWorldspace.Center;
 			goToLevelSceneBtn.Clicked += goToLevelSelectScene;
 			gameStartLayer.AddChild(goToLevelSceneBtn);
 
 			goToSettingBtn = new Button (gameStartLayer);
 			goToSettingBtn.ButtonStyle = ButtonStyle.confirmBtn2;
 			goToSettingBtn.btnText="Setting";
-			goToSettingBtn.PositionX = gameStartLayer.VisibleBoundsWorldspace.UpperRight.X - 150.0f;
+			goToSettingBtn.PositionX = gameStartLayer.VisibleBoundsWorldspace.UpperRight.X - 200.0f;
 			goToSettingBtn.PositionY = gameStartLayer.VisibleBoundsWorldspace.LowerLeft.Y + 100.0f;
+
+			//goToSettingBtn.Position = gameStartLayer.VisibleBoundsWorldspace.Center;
 			goToSettingBtn.Clicked += goToSettingScene;
 			gameStartLayer.AddChild(goToSettingBtn);
 		}
@@ -66,8 +71,8 @@ namespace MyBouncingGame.Scenes
 		{
 			gameStartLayer.RemoveAllChildren (true);
 
-			goToLevelSceneBtn.Dispose ();
-			goToSettingBtn.Dispose ();
+			goToLevelSceneBtn.RemoveBtnTouchListener ();
+			goToSettingBtn.RemoveBtnTouchListener ();
 
 			GameAppDelegate.GoToGameScene ();
 		}
@@ -76,8 +81,8 @@ namespace MyBouncingGame.Scenes
 		{
 			gameStartLayer.RemoveAllChildren (true);
 
-			goToLevelSceneBtn.Dispose ();
-			goToSettingBtn.Dispose ();
+			goToLevelSceneBtn.RemoveBtnTouchListener ();
+			goToSettingBtn.RemoveBtnTouchListener ();
 
 			GameAppDelegate.GoToGameScene ();
 		}

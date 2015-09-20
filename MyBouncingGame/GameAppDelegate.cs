@@ -57,6 +57,7 @@ namespace MyBouncingGame
 			
 		public static void GoToGameScene()
 		{
+
 			var scene = new GamePlayScene (mainWindow);
 			director.ReplaceScene (new CCTransitionFade(1.5f, scene));
 		}
