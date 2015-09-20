@@ -24,7 +24,10 @@ namespace MyBouncingGame.Scenes
 		CCLabel deathRestartLabel;
 
 		int delayCount=0;
+		int beginCount=0;
+
 		bool deathFlag=false;
+		bool beginCountFinishFlag=false;
 
 		TouchScreenInput input;
 
@@ -56,15 +59,14 @@ namespace MyBouncingGame.Scenes
 		private void CreateHudAndBackground()
 		{
 			//add backgroung image
-			backgroundImage = new CCSprite ("background.png");
-			backgroundImage.Scale = 2.0f;
+			backgroundImage = new CCSprite ("GamePlayBackground.png");
 			backgroundImage.PositionX = ContentSize.Center.X;
-			backgroundImage.PositionY = ContentSize.Center.Y;
+			backgroundImage.PositionY = ContentSize.Center.Y+500.0f;
 			backgroundImage.IsAntialiased = false;
 			hudLayer.AddChild (backgroundImage);
 
 			//add score Label
-			scoreLabel = new CCLabel ("Score: 0", "arial", 22, CCLabelFormat.SpriteFont);
+			scoreLabel = new CCLabel ("Score: 0", "fonts/Russian.ttf", 35, CCLabelFormat.SystemFont);
 			scoreLabel.PositionX = gameplayLayer.VisibleBoundsWorldspace.UpperRight.X-200.0f;
 			scoreLabel.PositionY = gameplayLayer.VisibleBoundsWorldspace.UpperRight.Y-50.0f;
 			scoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;
@@ -76,29 +78,40 @@ namespace MyBouncingGame.Scenes
 		{
 			mPaddle = new PaddleEntity ();
 			mPaddle.PositionX = gameplayLayer.VisibleBoundsWorldspace.Center.X;
-			mPaddle.PositionY = 50;
+			mPaddle.PositionY = 25;
 			gameplayLayer.AddChild (mPaddle);
 
 			mBall = new BallEntity ();
 			mBall.Position = gameplayLayer.VisibleBoundsWorldspace.Center;
+			mBall.Visible = false;
 			gameplayLayer.AddChild  (mBall);
 		}
 
 		private void PerformActivity(float frameTimeInSeconds)
 		{
-			if (!deathFlag) {
+			beginCount++;
 
-				mBall.PerformActivity (frameTimeInSeconds);
+			if (beginCountFinishFlag == false) {
+			
+				HandleBegin ();
 
-				PerformCollision ();
+			}
+			else {
+				
+				if (!deathFlag) {
 
-				PerformAccelerate ();
+					mBall.PerformActivity (frameTimeInSeconds);
 
-				TestIfDeath ();
-					
-			} else {
+					PerformCollision ();
 
-				HandleDeath ();
+					PerformAccelerate ();
+
+					TestIfDeath ();
+
+				} else {
+
+					HandleDeath ();
+				}
 			}
 
 		}
@@ -157,6 +170,38 @@ namespace MyBouncingGame.Scenes
 			}
 		}
 
+		private void HandleBegin()
+		{
+			if (beginCount == 100) {
+				hudLayer.RemoveChild (deathRestartLabel);
+				deathRestartLabel = new CCLabel ("3", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
+				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
+				hudLayer.AddChild (deathRestartLabel);
+
+			} else if (beginCount == 200) {
+				hudLayer.RemoveChild (deathRestartLabel);
+				deathRestartLabel = new CCLabel ("2", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
+				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
+				hudLayer.AddChild (deathRestartLabel);
+
+			} else if (beginCount == 300) {
+				hudLayer.RemoveChild (deathRestartLabel);
+				deathRestartLabel = new CCLabel ("1", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
+				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
+				hudLayer.AddChild (deathRestartLabel);
+
+			} else if (beginCount == 400) {
+				hudLayer.RemoveChild (deathRestartLabel);
+				beginCountFinishFlag = true;
+				mBall.Visible = true;
+			}
+			
+		}
+
+
 		private void HandleDeath()
 		{
 			delayCount++;
@@ -165,7 +210,8 @@ namespace MyBouncingGame.Scenes
 			{
 
 				hudLayer.RemoveChild(deathRestartLabel);
-				deathRestartLabel = new CCLabel("Death!", "fonts/alphbeta.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel = new CCLabel("Death!", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
 				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
 				hudLayer.AddChild (deathRestartLabel);
 			}
@@ -175,7 +221,8 @@ namespace MyBouncingGame.Scenes
 
 
 				hudLayer.RemoveChild(deathRestartLabel);
-				deathRestartLabel = new CCLabel("Restart", "fonts/alphbeta.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel = new CCLabel("Restart", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
 				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
 				hudLayer.AddChild (deathRestartLabel);
 			}
@@ -185,7 +232,8 @@ namespace MyBouncingGame.Scenes
 
 
 				hudLayer.RemoveChild(deathRestartLabel);
-				deathRestartLabel = new CCLabel("3", "fonts/alphbeta.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel = new CCLabel("3", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
 				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
 				hudLayer.AddChild (deathRestartLabel);
 
@@ -195,7 +243,8 @@ namespace MyBouncingGame.Scenes
 				
 
 				hudLayer.RemoveChild(deathRestartLabel);
-				deathRestartLabel = new CCLabel("2", "fonts/alphbeta.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel = new CCLabel("2", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
 				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
 				hudLayer.AddChild (deathRestartLabel);
 
@@ -205,7 +254,8 @@ namespace MyBouncingGame.Scenes
 				
 
 				hudLayer.RemoveChild(deathRestartLabel);
-				deathRestartLabel = new CCLabel("1", "fonts/alphbeta.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel = new CCLabel("1", "fonts/Gimme Danger.ttf", 75, CCLabelFormat.SystemFont);
+				deathRestartLabel.Color = new CCColor3B (255, 0, 0);
 				deathRestartLabel.Position = hudLayer.VisibleBoundsWorldspace.Center;
 				hudLayer.AddChild (deathRestartLabel);
 			}
@@ -230,6 +280,11 @@ namespace MyBouncingGame.Scenes
 		private void AddTouchListener()
 		{
 			input = new TouchScreenInput (gameplayLayer,mPaddle);
+		}
+
+		public override void KeyBackClicked ()
+		{
+			GameAppDelegate.GoToGameStartPage ();
 		}
 			
 	}

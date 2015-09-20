@@ -40,14 +40,6 @@ public class SwitchCellView
 	}
 
 
-	public SwitchCellView (android.content.Context p0, android.util.AttributeSet p1, int p2, int p3) throws java.lang.Throwable
-	{
-		super (p0, p1, p2, p3);
-		if (getClass () == SwitchCellView.class)
-			mono.android.TypeManager.Activate ("Xamarin.Forms.Platform.Android.SwitchCellView, Xamarin.Forms.Platform.Android, Version=1.3.3.0, Culture=neutral, PublicKeyToken=null", "Android.Content.Context, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065:Android.Util.IAttributeSet, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065:System.Int32, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e:System.Int32, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e", this, new java.lang.Object[] { p0, p1, p2, p3 });
-	}
-
-
 	public void onCheckedChanged (android.widget.CompoundButton p0, boolean p1)
 	{
 		n_onCheckedChanged (p0, p1);

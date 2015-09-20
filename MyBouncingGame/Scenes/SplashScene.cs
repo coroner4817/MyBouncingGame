@@ -1,6 +1,5 @@
 ﻿using System;
 using CocosSharp;
-using System.Threading;
 
 namespace MyBouncingGame.Scenes
 {
@@ -48,7 +47,7 @@ namespace MyBouncingGame.Scenes
 				
 				splashLayer.RemoveChild (splashImage);
 
-				GameAppDelegate.GoToGameScene ();
+				GameAppDelegate.GoToGameStartPage ();
 			}
 		}
 

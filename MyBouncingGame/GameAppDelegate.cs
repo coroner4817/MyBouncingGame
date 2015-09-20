@@ -25,7 +25,7 @@ namespace MyBouncingGame
 			CCSize windowSize = mainWindow.WindowSizeInPixels;
 	
 			float desiredHeight = 768.0f;
-			float desiredWidth = 768.0f;
+			float desiredWidth = 1024.0f;
 
 
 			CCScene.SetDefaultDesignResolution (desiredWidth, desiredHeight, CCSceneResolutionPolicy.ShowAll);
@@ -48,11 +48,17 @@ namespace MyBouncingGame
 		{
 			application.Paused = false;
 		}
+
+		public static void GoToGameStartPage()
+		{
+			var scene = new GameStartScene (mainWindow);
+			director.ReplaceScene (new CCTransitionFade(1.5f,scene));
+		}
 			
 		public static void GoToGameScene()
 		{
 			var scene = new GamePlayScene (mainWindow);
-			director.ReplaceScene (scene);
+			director.ReplaceScene (new CCTransitionFade(1.5f, scene));
 		}
 	}
 }

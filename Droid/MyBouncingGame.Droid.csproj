@@ -13,9 +13,9 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>MyBouncingGame.Droid</AssemblyName>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,6 +85,7 @@
     <Folder Include="Resources\layout\" />
     <Folder Include="Resources\values\" />
     <Folder Include="Assets\Content\" />
+    <Folder Include="Assets\Content\ViewsImage\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -100,8 +101,15 @@
     <AndroidAsset Include="Assets\Content\paddle.png" />
     <AndroidAsset Include="Assets\Content\fonts\alphbeta.ttf" />
     <AndroidAsset Include="Assets\Content\fonts\arial-22.xnb" />
-    <AndroidAsset Include="Assets\Content\images\background.png" />
     <AndroidAsset Include="Assets\Content\images\Splash1.png" />
     <AndroidAsset Include="Assets\Content\images\Splash2.png" />
+    <AndroidAsset Include="Assets\Content\ViewsImage\levelBtnBase.png" />
+    <AndroidAsset Include="Assets\Content\ViewsImage\btnBase.png" />
+    <AndroidAsset Include="Assets\Content\ViewsImage\btnBase2.png" />
+    <AndroidAsset Include="Assets\Content\fonts\go3v2.ttf" />
+    <AndroidAsset Include="Assets\Content\images\GameStartSceneBackground.jpg" />
+    <AndroidAsset Include="Assets\Content\fonts\Gimme Danger.ttf" />
+    <AndroidAsset Include="Assets\Content\images\GamePlayBackground.jpg" />
+    <AndroidAsset Include="Assets\Content\fonts\Russian.ttf" />
   </ItemGroup>
 </Project>

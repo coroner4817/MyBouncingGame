@@ -17,11 +17,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Util\TouchScreenInput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\GamePlayScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SplashScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GameStartScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
     <Folder Include="$(MSBuildThisFileDirectory)Util\" />
     <Folder Include="$(MSBuildThisFileDirectory)Entity\" />
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>
