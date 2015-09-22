@@ -31,6 +31,8 @@ namespace MyBouncingGame.Scenes
 
 		private void Splash(float seconds)
 		{
+			Console.WriteLine ("Splash Schedule Running!!!!!!!!!");
+			
 			timeCount++;
 
 			splashImage.Opacity = getOpacity (timeCount);
@@ -47,6 +49,7 @@ namespace MyBouncingGame.Scenes
 				
 				splashLayer.RemoveChild (splashImage);
 
+				Unschedule (Splash);
 				GameAppDelegate.GoToGameStartPage ();
 			}
 		}

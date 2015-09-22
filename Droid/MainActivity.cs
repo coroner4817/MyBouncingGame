@@ -23,11 +23,13 @@ namespace MyBouncingGame
 	]
 	public class MainActivity : AndroidGameActivity
 	{
+		CCApplication application;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			var application = new CCApplication ();
+			application = new CCApplication ();
 			application.ApplicationDelegate = new GameAppDelegate ();
 			SetContentView (application.AndroidContentView);
 			application.StartGame ();

@@ -1,6 +1,8 @@
 ﻿using System;
 using CocosSharp;
 using MyBouncingGame.Views;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace MyBouncingGame.Scenes
 {
@@ -74,6 +76,9 @@ namespace MyBouncingGame.Scenes
 			goToLevelSceneBtn.RemoveBtnTouchListener ();
 			goToSettingBtn.RemoveBtnTouchListener ();
 
+			gameStartLayer.RunAction (new CCFadeOut (1.5f));
+
+			Unschedule (HandleBackKeyPress);
 			GameAppDelegate.GoToGameScene ();
 		}
 
@@ -84,7 +89,22 @@ namespace MyBouncingGame.Scenes
 			goToLevelSceneBtn.RemoveBtnTouchListener ();
 			goToSettingBtn.RemoveBtnTouchListener ();
 
-			GameAppDelegate.GoToGameScene ();
+			//GameAppDelegate.GoToGameScene ();
+		}
+
+		public void CheckIfBackPressed()
+		{
+			Schedule (HandleBackKeyPress);
+		}
+
+		private void HandleBackKeyPress(float seconds)
+		{
+			Console.WriteLine ("GameStart Schedule Running!!!!!!!!!");
+			if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+			{
+				Unschedule (HandleBackKeyPress);
+				//GameAppDelegate.EndGame ();
+			}
 		}
 			
 	}

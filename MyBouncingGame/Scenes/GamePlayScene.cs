@@ -5,6 +5,9 @@ using MyBouncingGame.Data;
 using MyBouncingGame.Entity;
 using MyBouncingGame.Util;
 
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
+
 namespace MyBouncingGame.Scenes
 {
 	public class GamePlayScene : CCScene
@@ -89,6 +92,7 @@ namespace MyBouncingGame.Scenes
 
 		private void PerformActivity(float frameTimeInSeconds)
 		{
+			Console.WriteLine ("GamePlay Schedule Running!!!!!!!!!");
 			beginCount++;
 
 			if (beginCountFinishFlag == false) {
@@ -113,6 +117,8 @@ namespace MyBouncingGame.Scenes
 					HandleDeath ();
 				}
 			}
+
+			HandleBackKeyPress ();
 
 		}
 
@@ -280,6 +286,15 @@ namespace MyBouncingGame.Scenes
 		private void AddTouchListener()
 		{
 			input = new TouchScreenInput (gameplayLayer,mPaddle);
+		}
+
+		private void HandleBackKeyPress()
+		{
+			if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+			{
+				Unschedule (PerformActivity);
+				GameAppDelegate.GoToGameStartPage ();
+			}
 		}
 			
 	}
