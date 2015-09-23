@@ -76,7 +76,7 @@ namespace MyBouncingGame.Scenes
 			goToLevelSceneBtn.RemoveBtnTouchListener ();
 			goToSettingBtn.RemoveBtnTouchListener ();
 
-			gameStartLayer.RunAction (new CCFadeOut (1.5f));
+			//gameStartLayer.RunAction (new CCFadeOut (1.5f));
 
 			Unschedule (HandleBackKeyPress);
 			GameAppDelegate.GoToGameScene ();
@@ -92,7 +92,7 @@ namespace MyBouncingGame.Scenes
 			//GameAppDelegate.GoToGameScene ();
 		}
 
-		public void CheckIfBackPressed()
+		public void PerformActivity()
 		{
 			Schedule (HandleBackKeyPress);
 		}
@@ -100,13 +100,15 @@ namespace MyBouncingGame.Scenes
 		private void HandleBackKeyPress(float seconds)
 		{
 			Console.WriteLine ("GameStart Schedule Running!!!!!!!!!");
+
+			#if __ANDROID__
 			if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
 			{
 				Unschedule (HandleBackKeyPress);
-				//GameAppDelegate.EndGame ();
+				GameAppDelegate.EndGame ();
 			}
+			#endif
 		}
-			
 	}
 }
 

@@ -3,7 +3,6 @@ using CocosSharp;
 using MyBouncingGame.Scenes;
 using CocosDenshion;
 
-
 namespace MyBouncingGame
 {
 	public class GameAppDelegate : CCApplicationDelegate
@@ -14,6 +13,10 @@ namespace MyBouncingGame
 		public static SplashScene sceneSplash;
 		public static GameStartScene sceneGameStart;
 		public static GamePlayScene sceneGamePlay;
+
+		#if __ANDROID__
+		public static Android.App.Activity activity { get; set;}
+		#endif
 
 		public override void ApplicationDidFinishLaunching (CCApplication application, CCWindow mainWindow)
 		{
@@ -33,8 +36,6 @@ namespace MyBouncingGame
 			float desiredWidth = 1024.0f;
 			CCScene.SetDefaultDesignResolution (desiredWidth, desiredHeight, CCSceneResolutionPolicy.ShowAll);
 
-			CCSimpleAudioEngine.SharedEngine.PlayBackgroundMusic ("backgroundMusic.wav", true);
-
 
 			director = new CCDirector ();
 			mainWindow.AddSceneDirector (director);
@@ -43,9 +44,14 @@ namespace MyBouncingGame
 			director.RunWithScene (scene);
 
 			scene.PerformSplash ();
-		}
 
-		//返回键把游戏最小化
+			CCSimpleAudioEngine.SharedEngine.PlayBackgroundMusic ("SplashBackMusic.wav",false);
+
+			CCSimpleAudioEngine.SharedEngine.PreloadEffect ("BallCollideHigh.wav");
+			CCSimpleAudioEngine.SharedEngine.PreloadEffect ("BallCollideLow.wav");
+
+		}
+			
 		public override void ApplicationDidEnterBackground (CCApplication application)
 		{
 			application.Paused = true;
@@ -62,22 +68,28 @@ namespace MyBouncingGame
 
 		public static void GoToGameStartPage()
 		{
+			CCSimpleAudioEngine.SharedEngine.StopBackgroundMusic (true);
 			var scene = new GameStartScene (mainWindow);
 			director.ReplaceScene (new CCTransitionFade(1.5f,scene));
 
-			scene.CheckIfBackPressed ();
+			CCSimpleAudioEngine.SharedEngine.PlayBackgroundMusic ("backgroundMusic.wav", true);
 
+			scene.PerformActivity ();
 		}
 			
 		public static void GoToGameScene()
 		{
+			CCSimpleAudioEngine.SharedEngine.StopBackgroundMusic (true);
 			var scene = new GamePlayScene (mainWindow);
 			director.ReplaceScene (new CCTransitionFade(1.5f, scene));
+			CCSimpleAudioEngine.SharedEngine.PlayBackgroundMusic ("GameBackgroundMusic.wav", true);
 		}
 
 		public static void EndGame()
 		{
-			mainWindow.EndAllSceneDirectors ();
+			if (activity != null) {
+				activity.MoveTaskToBack (true);
+			}
 		}
 	}
 }

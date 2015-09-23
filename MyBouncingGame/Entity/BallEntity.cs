@@ -1,6 +1,7 @@
 ﻿using System;
 using MyBouncingGame.Data;
 using CocosSharp;
+using CocosDenshion;
 
 namespace MyBouncingGame.Entity
 {
@@ -40,6 +41,8 @@ namespace MyBouncingGame.Entity
 			float minXVelocity = XVelocity-200.0f;
 			float maxXVelocity = XVelocity+200.0f;
 			XVelocity = CCRandom.GetRandomFloat (minXVelocity, maxXVelocity);
+
+			CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideHigh.wav");
 		}
 
 

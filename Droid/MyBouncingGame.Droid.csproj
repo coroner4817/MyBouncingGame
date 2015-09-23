@@ -114,5 +114,9 @@
     <AndroidAsset Include="Assets\Content\Entity\ball.png" />
     <AndroidAsset Include="Assets\Content\Entity\paddle.png" />
     <AndroidAsset Include="Assets\Content\Sound\backgroundMusic.wav" />
+    <AndroidAsset Include="Assets\Content\Sound\BallCollideHigh.wav" />
+    <AndroidAsset Include="Assets\Content\Sound\BallCollideLow.wav" />
+    <AndroidAsset Include="Assets\Content\Sound\SplashBackMusic.wav" />
+    <AndroidAsset Include="Assets\Content\Sound\GameBackgroundMusic.wav" />
   </ItemGroup>
 </Project>

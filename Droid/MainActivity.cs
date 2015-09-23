@@ -29,6 +29,8 @@ namespace MyBouncingGame
 		{
 			base.OnCreate (bundle);
 
+			MyBouncingGame.GameAppDelegate.activity = this;
+
 			application = new CCApplication ();
 			application.ApplicationDelegate = new GameAppDelegate ();
 			SetContentView (application.AndroidContentView);

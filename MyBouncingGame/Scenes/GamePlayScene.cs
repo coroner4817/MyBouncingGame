@@ -7,6 +7,7 @@ using MyBouncingGame.Util;
 
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using CocosDenshion;
 
 namespace MyBouncingGame.Scenes
 {
@@ -145,12 +146,14 @@ namespace MyBouncingGame.Scenes
 
 			if (ifCollisionLeftRight) {
 				mBall.XVelocity *= -1;
+				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
 			}
 	
 			bool ifCollisionTop = (mBall.TopY >mData.screenTopY && mBall.YVelocity > 0);
 
 			if (ifCollisionTop) {
 				mBall.YVelocity *= -1;
+				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
 			}
 
 

@@ -44,7 +44,6 @@ D:\Github\MyBouncingGame\Droid\bin\Debug\Xamarin.Forms.Xaml.xml
 D:\Github\MyBouncingGame\Droid\bin\Debug\CocosSharp.xml
 D:\Github\MyBouncingGame\Droid\bin\Debug\Lidgren.Network.xml
 D:\Github\MyBouncingGame\Droid\bin\Debug\MonoGame.Framework.xml
-D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.csprojResolveAssemblyReference.cache
 D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.dll
 D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.pdb
 D:\Github\MyBouncingGame\Droid\obj\Debug\android\bin\com.companyname.mybouncinggame.apk
@@ -54,3 +53,4 @@ D:\Github\MyBouncingGame\Droid\obj\Debug\res\drawable-xhdpi\icon.png
 D:\Github\MyBouncingGame\Droid\obj\Debug\res\drawable-xxhdpi\icon.png
 D:\Github\MyBouncingGame\Droid\obj\Debug\R.cs.flag
 D:\Github\MyBouncingGame\Droid\obj\Debug\uploadflags.txt
+D:\Github\MyBouncingGame\Droid\obj\Debug\MyBouncingGame.Droid.csprojResolveAssemblyReference.cache
