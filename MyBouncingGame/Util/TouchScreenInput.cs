@@ -31,11 +31,11 @@ namespace MyBouncingGame.Util
 
 			if (locationOnScreen.X < owner.VisibleBoundsWorldspace.LowerLeft.X)
 			{
-				locationOnScreen.X = owner.VisibleBoundsWorldspace.LowerLeft.X + 50.0f;
+				locationOnScreen.X = owner.VisibleBoundsWorldspace.LowerLeft.X + (mControledEntity.RightX- mControledEntity.LeftX)/2;
 			}
 			if (locationOnScreen.X > owner.VisibleBoundsWorldspace.UpperRight.X)
 			{
-				locationOnScreen.X = owner.VisibleBoundsWorldspace.UpperRight.X - 50.0f;
+				locationOnScreen.X = owner.VisibleBoundsWorldspace.UpperRight.X - (mControledEntity.RightX - mControledEntity.LeftX)/2;
 			}
 
 			mControledEntity.PositionX = locationOnScreen.X;

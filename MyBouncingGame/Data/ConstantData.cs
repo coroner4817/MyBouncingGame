@@ -61,6 +61,13 @@ namespace MyBouncingGame.Data
 			return (1.0f + level * 0.5f);
 		}
 
+		public float paddleCornerDefine
+		{
+			get
+			{
+				return 30.0f;
+			}
+		}
 
 	}
 }

@@ -28,19 +28,31 @@ namespace MyBouncingGame.Entity
 
 		private void calculateSpeedUpdatePosition(float seconds)
 		{
-			YVelocity += seconds * - mData.getGravity(0);
+			//YVelocity += seconds * - mData.getGravity(0);
 
 			this.PositionX += XVelocity * seconds;
 			this.PositionY += YVelocity * seconds;
 		}
 
-		public void HandleCollisionWithPaddle()
+		public void HandleCollisionWithPaddle(bool isCorner)
 		{
 			YVelocity *= -1;
 
-			float minXVelocity = XVelocity-200.0f;
-			float maxXVelocity = XVelocity+200.0f;
-			XVelocity = CCRandom.GetRandomFloat (minXVelocity, maxXVelocity);
+			if (!isCorner) {
+
+				if (XVelocity > 0) {
+					XVelocity = CCRandom.GetRandomFloat (0, XVelocity + 200.0f);
+				} else {
+					XVelocity = CCRandom.GetRandomFloat (XVelocity - 200.0f, 0);
+				}
+		
+			} else {
+				if (XVelocity > 0) {
+					XVelocity = CCRandom.GetRandomFloat (0, XVelocity + 400.0f);
+				} else {
+					XVelocity = CCRandom.GetRandomFloat (XVelocity - 400.0f, 0);
+				}
+			}
 
 			CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideHigh.wav");
 		}

@@ -1,11 +1,6 @@
 ﻿<Properties StartupItem="Droid\MyBouncingGame.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.ZX1G22K8PX" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MyBouncingGame\GameAppDelegate.cs">
-    <Files>
-      <File FileName="MyBouncingGame\GameAppDelegate.cs" Line="71" Column="64" />
-      <File FileName="MyBouncingGame\Scenes\GamePlayScene.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -82,18 +82,22 @@ namespace MyBouncingGame.Scenes
 		{
 			mPaddle = new PaddleEntity ();
 			mPaddle.PositionX = gameplayLayer.VisibleBoundsWorldspace.Center.X;
-			mPaddle.PositionY = 25;
+			mPaddle.PositionY = 50;
 			gameplayLayer.AddChild (mPaddle);
 
 			mBall = new BallEntity ();
 			mBall.Position = gameplayLayer.VisibleBoundsWorldspace.Center;
 			mBall.Visible = false;
+			mBall.YVelocity = -350;
 			gameplayLayer.AddChild  (mBall);
 		}
 
 		private void PerformActivity(float frameTimeInSeconds)
 		{
 			Console.WriteLine ("GamePlay Schedule Running!!!!!!!!!");
+			//Console.WriteLine(mBall.XVelocity.ToString());
+			//Console.WriteLine (mBall.YVelocity.ToString ());
+
 			beginCount++;
 
 			if (beginCountFinishFlag == false) {
@@ -132,8 +136,8 @@ namespace MyBouncingGame.Scenes
 
 			if ((score % 10 == 0)&&(score!=0)&&(!mBall.AccelerateState)) 
 			{
-				mBall.XVelocity *= mData.getSpeedCoeff(0);
-				mBall.YVelocity *= mData.getSpeedCoeff(0);
+				mBall.XVelocity *= mData.getSpeedCoeff(1);
+				mBall.YVelocity *= mData.getSpeedCoeff(1);
 				mBall.AccelerateState = true;
 			}
 		}
@@ -163,7 +167,11 @@ namespace MyBouncingGame.Scenes
 
 			if (doesBallOverlapPaddle && isMovingDownward) {
 
-				mBall.HandleCollisionWithPaddle ();
+				if ((mBall.RightX < (mPaddle.LeftX + mData.paddleCornerDefine)) || (mBall.LeftX > (mPaddle.RightX - mData.paddleCornerDefine))) {
+					mBall.HandleCollisionWithPaddle (true);
+				} else {
+					mBall.HandleCollisionWithPaddle (false);
+				}
 
 				score++;
 				scoreLabel.Text = "Score: " + score.ToString ();
@@ -278,7 +286,7 @@ namespace MyBouncingGame.Scenes
 
 				mBall.Position = gameplayLayer.VisibleBoundsWorldspace.Center;
 
-				mBall.YVelocity = 0;
+				mBall.YVelocity = -350;
 				mBall.XVelocity = 0;
 
 				scoreLabel.Text = "Score: 0";
