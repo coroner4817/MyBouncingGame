@@ -69,5 +69,12 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Windows executanle
+*.exe
+
 # Windows shortcuts
 *.lnk
+
+
+# Emacs backup files
+*~
