@@ -16,6 +16,8 @@ namespace MyBouncingGame
 		public static GameStartScene sceneGameStart;
 		public static GamePlayScene sceneGamePlay;
 
+		int i = 0;
+
 		#if __ANDROID__
 		public static Android.App.Activity activity { get; set;}
 		#endif
