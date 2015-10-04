@@ -3,6 +3,7 @@ using CocosSharp;
 using MyBouncingGame.Views;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using MyBouncingGame.Layers;
 
 namespace MyBouncingGame.Scenes
 {
@@ -15,6 +16,8 @@ namespace MyBouncingGame.Scenes
 
 		Button goToLevelSceneBtn;
 		Button goToSettingBtn;
+
+		PopUpLayer mSettingPopUp;
 
 		public GameStartScene (CCWindow mainWindow) : base(mainWindow)
 		{
@@ -53,8 +56,6 @@ namespace MyBouncingGame.Scenes
 			goToLevelSceneBtn.btnText = "Start";
 			goToLevelSceneBtn.PositionX = gameStartLayer.VisibleBoundsWorldspace.UpperRight.X - 200.0f;
 			goToLevelSceneBtn.PositionY = gameStartLayer.VisibleBoundsWorldspace.LowerLeft.Y + 230.0f;
-
-			//goToLevelSceneBtn.Position = gameStartLayer.VisibleBoundsWorldspace.Center;
 			goToLevelSceneBtn.Clicked += goToLevelSelectScene;
 			gameStartLayer.AddChild(goToLevelSceneBtn);
 
@@ -63,8 +64,6 @@ namespace MyBouncingGame.Scenes
 			goToSettingBtn.btnText="Setting";
 			goToSettingBtn.PositionX = gameStartLayer.VisibleBoundsWorldspace.UpperRight.X - 200.0f;
 			goToSettingBtn.PositionY = gameStartLayer.VisibleBoundsWorldspace.LowerLeft.Y + 100.0f;
-
-			//goToSettingBtn.Position = gameStartLayer.VisibleBoundsWorldspace.Center;
 			goToSettingBtn.Clicked += goToSettingScene;
 			gameStartLayer.AddChild(goToSettingBtn);
 		}
@@ -84,13 +83,26 @@ namespace MyBouncingGame.Scenes
 
 		private void goToSettingScene(object sender, EventArgs args)
 		{
-			gameStartLayer.RemoveAllChildren (true);
+//			gameStartLayer.RemoveAllChildren (true);
+//			goToLevelSceneBtn.RemoveBtnTouchListener ();
+//			goToSettingBtn.RemoveBtnTouchListener ();
 
-			goToLevelSceneBtn.RemoveBtnTouchListener ();
-			goToSettingBtn.RemoveBtnTouchListener ();
+			CCSprite mSettingBackImage=new CCSprite("images/GameStartSettingPopUpBackground");
+			CCLabel mSettingTitle = new CCLabel ("Setting", "fonts/Gimme Danger.ttf", 30, CCLabelFormat.SystemFont);
 
-			//GameAppDelegate.GoToGameScene ();
+			mSettingPopUp = new PopUpLayer (mSettingBackImage,mSettingTitle);
+
+			mSettingPopUp.Position = gameStartLayer.VisibleBoundsWorldspace.Center;
+			gameStartLayer.AddChild (mSettingPopUp);
+
 		}
+
+//		private void BtnCallBack(object sender, EventArgs args)
+//		{
+//			mConfirmBtn.RemoveBtnTouchListener ();
+//			gameStartLayer.RemoveChild (mSettingPopUp);
+//
+//		}
 
 		public void PerformActivity()
 		{

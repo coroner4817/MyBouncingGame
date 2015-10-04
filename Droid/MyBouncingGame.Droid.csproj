@@ -118,5 +118,6 @@
     <AndroidAsset Include="Assets\Content\Entity\ball.png" />
     <AndroidAsset Include="Assets\Content\Entity\paddle.png" />
     <AndroidAsset Include="Assets\Content\images\Splash2.png" />
+    <AndroidAsset Include="Assets\Content\images\GameStartSettingPopUpBackground.jpg" />
   </ItemGroup>
 </Project>

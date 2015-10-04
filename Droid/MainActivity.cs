@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Media;
 using Microsoft.Xna.Framework;
 
 using CocosSharp;
@@ -30,6 +31,8 @@ namespace MyBouncingGame
 			base.OnCreate (bundle);
 
 			MyBouncingGame.GameAppDelegate.activity = this;
+
+			this.VolumeControlStream = Android.Media.Stream.Music;
 
 			application = new CCApplication ();
 			application.ApplicationDelegate = new GameAppDelegate ();
