@@ -10,6 +10,8 @@ namespace MyBouncingGame
 		static CCDirector director;
 		static CCWindow mainWindow;
 
+		int i=0;
+		
 		public static SplashScene sceneSplash;
 		public static GameStartScene sceneGameStart;
 		public static GamePlayScene sceneGamePlay;

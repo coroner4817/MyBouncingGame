@@ -1,10 +1,9 @@
 ﻿<Properties StartupItem="Droid\MyBouncingGame.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AVD_for_Galaxy_Nexus" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MyBouncingGame\Layers\PopUpLayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid\Resources\Resource.designer.cs">
     <Files>
       <File FileName="MyBouncingGame\Scenes\GameStartScene.cs" Line="90" Column="4" />
-      <File FileName="MyBouncingGame\Layers\PopUpLayer.cs" Line="8" Column="33" />
-      <File FileName="MyBouncingGame\Util\TouchScreenInput.cs" Line="22" Column="57" />
+      <File FileName="Droid\Resources\Resource.designer.cs" Line="51" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
