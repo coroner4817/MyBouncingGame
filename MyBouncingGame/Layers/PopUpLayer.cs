@@ -8,7 +8,7 @@ namespace MyBouncingGame.Layers
 	public class PopUpLayer:CCLayer
 	{
 		CCLabel mTitle;
-		public CCSprite mBackgroundImage;
+		CCSprite mBackgroundImage;
 		Button mConfirmBtn;
 
 		public PopUpLayer (CCSprite background, CCLabel title)
