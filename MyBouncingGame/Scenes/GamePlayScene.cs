@@ -35,6 +35,9 @@ namespace MyBouncingGame.Scenes
 
 		TouchScreenInput input;
 
+		CCTileMap mLevelTest;
+		LevelCollision levelCollision;
+
 		public GamePlayScene (CCWindow mainWindow) : base(mainWindow)
 		{
 			CreateLayers ();
@@ -45,7 +48,22 @@ namespace MyBouncingGame.Scenes
 
 			AddTouchListener ();
 
+			loadTileMap ();
+
 			Schedule(PerformActivity);
+		}
+
+		void loadTileMap()
+		{
+			//加载tiledmap预处理
+
+			mLevelTest = new CCTileMap ("LevelTest.tmx");
+			mLevelTest.Antialiased = false;
+			this.AddChild (mLevelTest);
+
+			levelCollision = new LevelCollision ();
+			levelCollision.PopulateFrom (mLevelTest);
+
 		}
 
 		private void CreateLayers()
@@ -95,8 +113,6 @@ namespace MyBouncingGame.Scenes
 		private void PerformActivity(float frameTimeInSeconds)
 		{
 			Console.WriteLine ("GamePlay Schedule Running!!!!!!!!!");
-			//Console.WriteLine(mBall.XVelocity.ToString());
-			//Console.WriteLine (mBall.YVelocity.ToString ());
 
 			beginCount++;
 
@@ -144,7 +160,16 @@ namespace MyBouncingGame.Scenes
 
 		private void PerformCollision()
 		{
+			PerformEnvironmentCollision ();
 
+			PerformPaddleCollision ();
+
+			PerformBricksCollision ();
+
+		}
+
+		void PerformEnvironmentCollision()
+		{
 			bool ifCollisionLeftRight = 
 				(mBall.RightX > mData.screenRightX && mBall.XVelocity > 0) ||(mBall.LeftX < mData.screenLeftX && mBall.XVelocity < 0);
 
@@ -152,15 +177,17 @@ namespace MyBouncingGame.Scenes
 				mBall.XVelocity *= -1;
 				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
 			}
-	
+
 			bool ifCollisionTop = (mBall.TopY >mData.screenTopY && mBall.YVelocity > 0);
 
 			if (ifCollisionTop) {
 				mBall.YVelocity *= -1;
 				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
 			}
+		}
 
-
+		void PerformPaddleCollision()
+		{
 			//和paddle
 			bool doesBallOverlapPaddle = mBall.Intersects (mPaddle);
 			bool isMovingDownward = mBall.YVelocity < 0;
@@ -172,9 +199,17 @@ namespace MyBouncingGame.Scenes
 				} else {
 					mBall.HandleCollisionWithPaddle (false);
 				}
+			}
+		}
 
+		void PerformBricksCollision()
+		{
+			if (levelCollision.PerformCollisionAgainst (mBall))
+			{
 				score++;
 				scoreLabel.Text = "Score: " + score.ToString ();
+
+				mBall.ReactToLevelCollision ();
 			}
 
 		}
@@ -217,8 +252,7 @@ namespace MyBouncingGame.Scenes
 			}
 			
 		}
-
-
+			
 		private void HandleDeath()
 		{
 			delayCount++;
