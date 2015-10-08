@@ -20,6 +20,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\GameStartScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layers\PopUpLayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TiledMapClass\PropertyLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TiledMapClass\RectWithDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TiledMapClass\TileMapPropertyFinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\LevelCollision.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
@@ -28,5 +32,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Layers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)TiledMapClass\" />
   </ItemGroup>
 </Project>

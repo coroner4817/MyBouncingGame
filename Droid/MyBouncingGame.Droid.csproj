@@ -88,6 +88,7 @@
     <Folder Include="Assets\Content\ViewsImage\" />
     <Folder Include="Assets\Content\Sound\" />
     <Folder Include="Assets\Content\Entity\" />
+    <Folder Include="Assets\Content\Level\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -119,5 +120,8 @@
     <AndroidAsset Include="Assets\Content\Entity\paddle.png" />
     <AndroidAsset Include="Assets\Content\images\Splash2.png" />
     <AndroidAsset Include="Assets\Content\images\GameStartSettingPopUpBackground.jpg" />
+    <AndroidAsset Include="Assets\Content\Level\LevelTest.tmx" />
+    <AndroidAsset Include="Assets\Content\Level\MasterSheetTest.png" />
+    <AndroidAsset Include="Assets\Content\Level\MasterSheetTest.tsx" />
   </ItemGroup>
 </Project>

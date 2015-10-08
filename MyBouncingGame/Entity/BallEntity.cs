@@ -57,6 +57,10 @@ namespace MyBouncingGame.Entity
 			CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideHigh.wav");
 		}
 
+		public void ReactToLevelCollision()
+		{
+			YVelocity = -YVelocity;
+		}
 
 	}
 }

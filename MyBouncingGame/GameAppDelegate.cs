@@ -10,14 +10,6 @@ namespace MyBouncingGame
 		static CCDirector director;
 		static CCWindow mainWindow;
 
-		int i=0;
-		
-		public static SplashScene sceneSplash;
-		public static GameStartScene sceneGameStart;
-		public static GamePlayScene sceneGamePlay;
-
-		int i = 0;
-
 		#if __ANDROID__
 		public static Android.App.Activity activity { get; set;}
 		#endif
@@ -32,6 +24,7 @@ namespace MyBouncingGame
 			application.ContentSearchPaths.Add ("Entity");
 			application.ContentSearchPaths.Add ("fonts");
 			application.ContentSearchPaths.Add ("images");
+			application.ContentSearchPaths.Add ("Level");
 			application.ContentSearchPaths.Add ("Sound");
 			application.ContentSearchPaths.Add ("ViewsImage");
 
