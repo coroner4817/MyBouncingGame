@@ -145,17 +145,17 @@ namespace MyBouncingGame.Scenes
 
 		private void PerformAccelerate()
 		{
-			if ((score % 10 == 9) && (score != 0))
-			{
-				mBall.AccelerateState = false;
-			}
-
-			if ((score % 10 == 0)&&(score!=0)&&(!mBall.AccelerateState)) 
-			{
-				mBall.XVelocity *= mData.getSpeedCoeff(1);
-				mBall.YVelocity *= mData.getSpeedCoeff(1);
-				mBall.AccelerateState = true;
-			}
+//			if ((score % 10 == 9) && (score != 0))
+//			{
+//				mBall.AccelerateState = false;
+//			}
+//
+//			if ((score % 10 == 0)&&(score!=0)&&(!mBall.AccelerateState)) 
+//			{
+//				mBall.XVelocity *= mData.getSpeedCoeff(1);
+//				mBall.YVelocity *= mData.getSpeedCoeff(1);
+//				mBall.AccelerateState = true;
+//			}
 		}
 
 		private void PerformCollision()
