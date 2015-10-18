@@ -212,6 +212,12 @@ namespace MyBouncingGame.Util
 
 			var boundingBoxWorld = entity.BoundingBoxTransformedToWorld;
 
+			if (leftIndex < rightIndex) {
+				for (int i = leftIndex; i < rightIndex; i++) {
+					Console.Write (i.ToString () + " ");
+				}
+			}
+
 			//遍历所有和entity有接触的瓦片，来判断这些瓦片对于entity的物理作用
 			for (int i = leftIndex; i < rightIndex; i++)
 			{
@@ -337,6 +343,8 @@ namespace MyBouncingGame.Util
 				first.LowerLeft.X < second.Left + second.Width &&
 				first.UpperRight.Y > second.Bottom &&
 				first.LowerLeft.Y < second.Bottom + second.Height;
+
+			//return
 
 		}
 	}

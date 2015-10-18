@@ -61,6 +61,7 @@ namespace MyBouncingGame.Scenes
 			mLevelTest.Antialiased = false;
 			this.AddChild (mLevelTest);
 
+			//初始化地图
 			levelCollision = new LevelCollision ();
 			levelCollision.PopulateFrom (mLevelTest);
 
