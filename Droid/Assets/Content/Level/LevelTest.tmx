@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="48" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="48" tilewidth="96" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" source="MasterSheetTest.tsx"/>
- <layer name="块层 1" width="64" height="48">
+ <layer name="块层 1" width="11" height="48">
   <data encoding="base64" compression="zlib">
-   eJzt1DsOgkAARVF25XcPKroH8LP/2tdZUQAShsk5ye0ImZniNQ2U5ZKu6ZbadE+PVU80XS13qeUeMGSX9umQjumUzn/8fql/UPY7bmU7u9SnZ3qld/qseqKfrbwh1GLMps7Z37nbXfL2AwAAAAAAAAAs7QvBdBbP
+   eJxjYBh6gIsAPZLAaFgQDoORFBajYBSMglFALwAARaUAgw==
   </data>
  </layer>
 </map>
