@@ -15,15 +15,20 @@ namespace MyBouncingGame.Util
 		int tileDimensionWidth;
 		int tileDimensionHeight;
 
-		List<RectWithDirection> collisions = new List<RectWithDirection> ();
+		List<RectWithDirection> collisions;
+
+		CCTileMapLayer mBrickLayer;
 
 		public void PopulateFrom(CCTileMap tileMap)
 		{
 			//得到瓦片地图里面的瓦片信息，比如说哪些瓦片可以与entity接触，具体是瓦片的哪个方向的面可以接触
 
+			collisions=new List<RectWithDirection> ();
+
 			//每个小瓦片的边长加上0.5，这样碰撞时就不会陷进去才弹出
 			tileDimensionWidth = (int)(tileMap.TileTexelSize.Width + .5f);
 			tileDimensionHeight = (int)(tileMap.TileTexelSize.Height + .5f);
+			mBrickLayer = tileMap.LayerNamed ("BrickLayer");
 
 			TileMapPropertyFinder finder = new TileMapPropertyFinder (tileMap);
 
@@ -46,7 +51,9 @@ namespace MyBouncingGame.Util
 						Left = left,
 						Bottom = bottom,
 						Width = tileDimensionWidth, 
-						Height = tileDimensionHeight
+						Height = tileDimensionHeight,
+						tiledMapCoordinate=propertyLocation.TileCoordinates
+							
 					};
 
 					//得到地图上所有的固体小块
@@ -197,9 +204,11 @@ namespace MyBouncingGame.Util
 			rightIndex = GetFirstAfter (rightAdjusted);
 		}
 
-		public bool PerformCollisionAgainst(PhysicsEntity entity)
+		public void PerformCollisionAgainst(PhysicsEntity entity, out CCTileMapCoordinates tileAtXy, out bool didCollisionOccur)
 		{
-			bool didCollisionOccur = false;
+			didCollisionOccur = false;
+			tileAtXy = CCTileMapCoordinates.Zero;
+
 
 			int leftIndex;
 			int rightIndex;
@@ -234,12 +243,13 @@ namespace MyBouncingGame.Util
 						boundingBoxWorld = entity.BoundingBoxTransformedToWorld;
 
 						didCollisionOccur = true;
+
+						tileAtXy = collisions [i].tiledMapCoordinate;
 					}
 				}
+					
 			}
 
-			//相碰
-			return didCollisionOccur;
 		}
 
 

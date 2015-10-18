@@ -36,6 +36,7 @@ namespace MyBouncingGame.Scenes
 		TouchScreenInput input;
 
 		CCTileMap mLevelTest;
+		CCTileMapLayer mTiledLayer;
 		LevelCollision levelCollision;
 
 		public GamePlayScene (CCWindow mainWindow) : base(mainWindow)
@@ -59,7 +60,8 @@ namespace MyBouncingGame.Scenes
 
 			mLevelTest = new CCTileMap ("LevelTest.tmx");
 			mLevelTest.Antialiased = false;
-			this.AddChild (mLevelTest);
+			mTiledLayer = mLevelTest.LayerNamed("BrickLayer");
+			gameplayLayer.AddChild (mTiledLayer);
 
 			//初始化地图
 			levelCollision = new LevelCollision ();
@@ -212,10 +214,19 @@ namespace MyBouncingGame.Scenes
 
 		void PerformBricksCollision()
 		{
-			if (levelCollision.PerformCollisionAgainst (mBall))
+			CCTileMapCoordinates collideTiledCoor;
+			bool isCollide=false;
+			levelCollision.PerformCollisionAgainst (mBall, out collideTiledCoor, out isCollide);
+
+			if (isCollide)
 			{
 				score++;
 				scoreLabel.Text = "Score: " + score.ToString ();
+
+				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
+
+				mTiledLayer.RemoveTile (collideTiledCoor);
+				levelCollision.PopulateFrom (mLevelTest);
 
 				mBall.ReactToLevelCollision ();
 			}

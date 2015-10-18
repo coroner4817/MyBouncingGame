@@ -123,5 +123,6 @@
     <AndroidAsset Include="Assets\Content\Level\MasterSheetTest.png" />
     <AndroidAsset Include="Assets\Content\Level\MasterSheetTest.tsx" />
     <AndroidAsset Include="Assets\Content\Entity\paddle.png" />
+    <AndroidAsset Include="Assets\Content\Sound\ballCollideBrick.wav" />
   </ItemGroup>
 </Project>

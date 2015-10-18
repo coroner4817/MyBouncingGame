@@ -12,5 +12,6 @@ namespace MyBouncingGame.TiledMapClass
 		public float WorldX;
 		public float WorldY;
 		public Dictionary<string, string> Properties;
+
 	}
 }
