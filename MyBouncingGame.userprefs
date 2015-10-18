@@ -1,6 +1,11 @@
 ﻿<Properties StartupItem="Droid\MyBouncingGame.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.ZX1G22K8PX" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AVD_for_Galaxy_Nexus" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyBouncingGame\Util\TouchScreenInput.cs">
+    <Files>
+      <File FileName="MyBouncingGame\Scenes\GamePlayScene.cs" Line="230" Column="5" />
+      <File FileName="MyBouncingGame\Util\TouchScreenInput.cs" Line="27" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

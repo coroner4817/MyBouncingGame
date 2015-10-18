@@ -28,6 +28,8 @@ namespace MyBouncingGame.TiledMapClass
 		public float Width;
 		public float Height;
 
+		public CCTileMapCoordinates tiledMapCoordinate;
+
 		public float CenterX
 		{
 			get

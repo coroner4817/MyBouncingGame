@@ -46,6 +46,7 @@ namespace MyBouncingGame
 
 			CCSimpleAudioEngine.SharedEngine.PreloadEffect ("BallCollideHigh.wav");
 			CCSimpleAudioEngine.SharedEngine.PreloadEffect ("BallCollideLow.wav");
+			CCSimpleAudioEngine.SharedEngine.PreloadEffect ("ballCollideBrick.wav");
 
 		}
 			
