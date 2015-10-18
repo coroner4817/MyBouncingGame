@@ -53,6 +53,9 @@ namespace MyBouncingGame.Entity
 					XVelocity = CCRandom.GetRandomFloat (XVelocity - 400.0f, 0);
 				}
 			}
+			if (XVelocity == 0) {
+				XVelocity = 30;
+			}
 
 			CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideHigh.wav");
 		}
@@ -60,6 +63,9 @@ namespace MyBouncingGame.Entity
 		public void ReactToLevelCollision()
 		{
 			YVelocity = -YVelocity;
+			if (XVelocity == 0) {
+				XVelocity = 30;
+			}
 		}
 
 	}

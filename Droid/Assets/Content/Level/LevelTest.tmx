@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="MasterSheetTest.tsx"/>
  <layer name="块层 1" width="11" height="48">
   <data encoding="base64" compression="zlib">
-   eJxjYBh6gItIeiSA0bAYDYNRMApGwSgYCAAAz50Alw==
+   eJxjYBh6gIsAPZLAaFgQDoORFBajYBSMglFALwAARaUAgw==
   </data>
  </layer>
 </map>

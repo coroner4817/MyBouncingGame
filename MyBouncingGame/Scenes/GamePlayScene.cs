@@ -113,7 +113,7 @@ namespace MyBouncingGame.Scenes
 
 		private void PerformActivity(float frameTimeInSeconds)
 		{
-			Console.WriteLine ("GamePlay Schedule Running!!!!!!!!!");
+			//Console.WriteLine ("GamePlay Schedule Running!!!!!!!!!");
 
 			beginCount++;
 
@@ -177,6 +177,9 @@ namespace MyBouncingGame.Scenes
 			if (ifCollisionLeftRight) {
 				mBall.XVelocity *= -1;
 				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
+				if (mBall.XVelocity == 0) {
+					mBall.XVelocity = 30;
+				}
 			}
 
 			bool ifCollisionTop = (mBall.TopY >mData.screenTopY && mBall.YVelocity > 0);
@@ -184,7 +187,11 @@ namespace MyBouncingGame.Scenes
 			if (ifCollisionTop) {
 				mBall.YVelocity *= -1;
 				CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideLow.wav");
+				if (mBall.XVelocity == 0) {
+					mBall.XVelocity = 30;
+				}
 			}
+				
 		}
 
 		void PerformPaddleCollision()

@@ -12,7 +12,8 @@ namespace MyBouncingGame.Util
 
 		//collision 是游戏地图中所有的固体部分 是player不可以进入的部分
 
-		int tileDimension;
+		int tileDimensionWidth;
+		int tileDimensionHeight;
 
 		List<RectWithDirection> collisions = new List<RectWithDirection> ();
 
@@ -20,8 +21,9 @@ namespace MyBouncingGame.Util
 		{
 			//得到瓦片地图里面的瓦片信息，比如说哪些瓦片可以与entity接触，具体是瓦片的哪个方向的面可以接触
 
-			//每个小瓦片的边长加上0.5的误差
-			tileDimension = (int)(tileMap.TileTexelSize.Width + .5f);
+			//每个小瓦片的边长加上0.5，这样碰撞时就不会陷进去才弹出
+			tileDimensionWidth = (int)(tileMap.TileTexelSize.Width + .5f);
+			tileDimensionHeight = (int)(tileMap.TileTexelSize.Height + .5f);
 
 			TileMapPropertyFinder finder = new TileMapPropertyFinder (tileMap);
 
@@ -36,15 +38,15 @@ namespace MyBouncingGame.Util
 					float centerY = propertyLocation.WorldY;
 
 					//得到每个小瓦片的左边界和下边界
-					float left = centerX - tileDimension/2.0f;
-					float bottom = centerY - tileDimension/2.0f;
+					float left = centerX - tileDimensionWidth/2.0f;
+					float bottom = centerY - tileDimensionHeight/2.0f;
 
 					//在那个点构造一个小瓦片
 					RectWithDirection rectangle = new RectWithDirection {
 						Left = left,
 						Bottom = bottom,
-						Width = tileDimension, 
-						Height = tileDimension
+						Width = tileDimensionWidth, 
+						Height = tileDimensionHeight
 					};
 
 					//得到地图上所有的固体小块
@@ -60,6 +62,7 @@ namespace MyBouncingGame.Util
 
 			// now let's adjust the directions that these point
 			//调整每个小块的角度
+
 			for (int i = 0; i < collisions.Count; i++)
 			{
 				var rect = collisions [i];
@@ -75,19 +78,19 @@ namespace MyBouncingGame.Util
 				// 一开始小瓦片的方向valueToAssign可能是所有的方向，每次减去一种不可能的方向值，最后得到的就是正确的方向的值的和
 				//direction是这个实体瓦片暴露在外，可以与entity接触的方向
 				//比如说瓦片地图里的地面，方向就为up
-				if (HasCollisionAt (centerX - tileDimension, centerY))
+				if (HasCollisionAt (centerX - tileDimensionWidth, centerY))
 				{
 					valueToAssign -= (int)Directions.Left;
 				}
-				if (HasCollisionAt (centerX + tileDimension, centerY))
+				if (HasCollisionAt (centerX + tileDimensionWidth, centerY))
 				{
 					valueToAssign -= (int)Directions.Right;
 				}
-				if (HasCollisionAt (centerX, centerY + tileDimension))
+				if (HasCollisionAt (centerX, centerY + tileDimensionHeight))
 				{
 					valueToAssign -= (int)Directions.Up;
 				}
-				if (HasCollisionAt (centerX, centerY - tileDimension))
+				if (HasCollisionAt (centerX, centerY - tileDimensionHeight))
 				{
 					valueToAssign -= (int)Directions.Down;
 				}
@@ -124,7 +127,6 @@ namespace MyBouncingGame.Util
 			//list从0开始，所以要减1
 			highBoundIndex -= 1;
 			int current = 0;  
-
 
 			while (true)
 			{
@@ -170,7 +172,7 @@ namespace MyBouncingGame.Util
 			//leftIndex是左数两个的瓦片在collisions中的index
 			//rightIndex是这个瓦片在collisions中的index
 			//这样生成了一个三个小瓦片组成的瓦片系
-			GetIndicesBetween (worldX - tileDimension, worldX + tileDimension, out leftIndex, out rightIndex);
+			GetIndicesBetween (worldX - tileDimensionWidth, worldX + tileDimensionWidth, out leftIndex, out rightIndex);
 
 			//遍历这个瓦片系
 			for (int i = leftIndex; i < rightIndex; i++)
@@ -187,9 +189,9 @@ namespace MyBouncingGame.Util
 		void GetIndicesBetween(float leftX, float rightX, out int leftIndex, out int rightIndex)
 		{
 			//leftAdjusted是左数第二个的瓦片的左边的X坐标
-			float leftAdjusted = tileDimension * (((int)leftX) / tileDimension) - tileDimension/2; 
+			float leftAdjusted = tileDimensionWidth * (((int)leftX) / tileDimensionWidth) - tileDimensionWidth/2; 
 			//rightAdjusted是这个瓦片的右边的X坐标
-			float rightAdjusted = tileDimension * (((int)rightX) / tileDimension) + tileDimension/2; 
+			float rightAdjusted = tileDimensionWidth * (((int)rightX) / tileDimensionWidth) + tileDimensionWidth/2; 
 
 			leftIndex = GetFirstAfter (leftAdjusted);
 			rightIndex = GetFirstAfter (rightAdjusted);
@@ -202,6 +204,7 @@ namespace MyBouncingGame.Util
 			int leftIndex;
 			int rightIndex;
 
+			int directionCount = 0;
 			//entity是player/enemy
 			//boundiongBox是包裹entity的最小的矩形
 			//lowerLeft是左下角，UpperRight是右上角
@@ -212,28 +215,26 @@ namespace MyBouncingGame.Util
 
 			var boundingBoxWorld = entity.BoundingBoxTransformedToWorld;
 
-			if (leftIndex < rightIndex) {
-				for (int i = leftIndex; i < rightIndex; i++) {
-					Console.Write (i.ToString () + " ");
-				}
-			}
-
 			//遍历所有和entity有接触的瓦片，来判断这些瓦片对于entity的物理作用
 			for (int i = leftIndex; i < rightIndex; i++)
 			{
 				//计算得到这个瓦片和entity接触后对entity的作用力产生的运动vector
+				//把ball从砖块里弹出来
 				var separatingVector = GetSeparatingVector (boundingBoxWorld, collisions [i]);
 
 				//如果player和瓦片地图中的不可进入的瓦片相碰
-				if (separatingVector != CCVector2.Zero)
+				for (directionCount = 0; directionCount < 4; directionCount++) 
 				{
-					//更新entity的位置
-					entity.PositionX += separatingVector.X;
-					entity.PositionY += separatingVector.Y;
-					// refresh boundingBoxWorld:
-					boundingBoxWorld = entity.BoundingBoxTransformedToWorld;
+					if (separatingVector[directionCount] != CCVector2.Zero)
+					{
+						//更新entity的位置
+						entity.PositionX += separatingVector[directionCount].X;
+						entity.PositionY += separatingVector[directionCount].Y;
+						// refresh boundingBoxWorld:
+						boundingBoxWorld = entity.BoundingBoxTransformedToWorld;
 
-					didCollisionOccur = true;
+						didCollisionOccur = true;
+					}
 				}
 			}
 
@@ -242,12 +243,16 @@ namespace MyBouncingGame.Util
 		}
 
 
-		CCVector2 GetSeparatingVector(CCRect first, RectWithDirection second)
+		List<CCVector2> GetSeparatingVector(CCRect first, RectWithDirection second)
 		{
 			//返回一个向量，是player在碰撞之后反方向移动的向量
 
-			// Default to no separation
-			CCVector2 separation = CCVector2.Zero;
+			List<CCVector2> separation = new List<CCVector2> {
+				CCVector2.Zero,
+				CCVector2.Zero,
+				CCVector2.Zero,
+				CCVector2.Zero
+			};
 
 			// Only calculate separation if the rectangles intersect
 			if (Intersects(first, second))
@@ -265,7 +270,7 @@ namespace MyBouncingGame.Util
 				float firstCenterY = first.Center.Y;
 
 				float secondCenterX = second.Left + second.Width / 2.0f;
-				float secondCenterY = second.Bottom + second.Width / 2.0f;
+				float secondCenterY = second.Bottom + second.Height / 2.0f;
 
 				//second的方向和想要判断的方向（左）取交集，如果和想要判断的方向（左）一致，且第一个的中心点在第二个的中心点的（左边）
 				//则当碰撞时，player可以向想要的方向移动
@@ -284,52 +289,59 @@ namespace MyBouncingGame.Util
 					if (candidate > 0)
 					{
 						minDistance = candidate;
-
 						//x方向移动回到地图实体瓦片的外面，y方向不动
-						separation.X = -minDistance;
-						separation.Y = 0;
+						separation [0] = new CCVector2 (-minDistance, 0);
 					}
+
 				}
+
 				if (canMoveRight)
 				{
 					//右重叠
 					float candidate = (second.Left + second.Width) - first.LowerLeft.X;
 
-					if (candidate > 0 && candidate < minDistance)
+					if (candidate > 0)
 					{
 						minDistance = candidate;
-
 						//向右移动
-						separation.X = minDistance;
-						separation.Y = 0;
+						separation [1] = new CCVector2 (minDistance, 0);
 					}
+
 				}
+
 				//其他方向同理
 				if (canMoveUp)
 				{
 					float candidate = (second.Bottom + second.Height) - first.Origin.Y;
 
-					if (candidate > 0 && candidate < minDistance)
+					if (candidate > 0)
 					{
 						minDistance = candidate;
-
-						separation.X = 0;
-						separation.Y = minDistance;
+						separation [2] = new CCVector2 (0, minDistance);
 					}
 
 				}
+
 				if (canMoveDown)
 				{
 					float candidate = first.UpperRight.Y - second.Bottom;
 
-					if (candidate > 0 && candidate < minDistance)
+					if (candidate > 0)
 					{
 						minDistance = candidate;
-
-						separation.X = 0;
-						separation.Y = -minDistance;
+						separation [3] = new CCVector2 (0, -minDistance);
 					}
+
 				}
+	
+
+				if ((intersectionRect.UpperRight.X > (second.Left + first.Size.Width))
+				   && (intersectionRect.LowerLeft.X < (second.Left + second.Width - first.Size.Width))) {
+					separation [0] = new CCVector2 (0, 0);
+					separation [1] = new CCVector2 (0, 0);
+				}
+
+
 			}
 
 			//左后返回player移动的vector
@@ -343,8 +355,6 @@ namespace MyBouncingGame.Util
 				first.LowerLeft.X < second.Left + second.Width &&
 				first.UpperRight.Y > second.Bottom &&
 				first.LowerLeft.Y < second.Bottom + second.Height;
-
-			//return
 
 		}
 	}

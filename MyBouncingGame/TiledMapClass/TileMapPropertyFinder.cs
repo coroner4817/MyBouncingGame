@@ -16,8 +16,9 @@ namespace MyBouncingGame.TiledMapClass
 		public IEnumerable<PropertyLocation> GetPropertyLocations()
 		{
 			// Width and Height are equal so we can use either
-			//得到每一个正方形小瓦片的边长
-			int tileDimension = (int)tileMap.TileTexelSize.Width;
+			//得到每一个小瓦片的边长
+			int tileDimensionWidth = (int)tileMap.TileTexelSize.Width;
+			int tileDimensionHeight = (int)tileMap.TileTexelSize.Height;
 
 			// Find out how many rows and columns are in our tile map
 			int numberOfColumns = (int)tileMap.MapDimensions.Size.Width;
@@ -33,11 +34,11 @@ namespace MyBouncingGame.TiledMapClass
 					// of the center of the tile - this will help us in 
 					// positioning entities, and will eliminate the possibility
 					// of floating point error when calculating the nearest tile:
-					int worldX = tileDimension * column + tileDimension / 2;
+					int worldX = tileDimensionWidth * column + tileDimensionWidth / 2;
 					for (int row = 0; row < numberOfRows; row++)
 					{
 						// See above on why we add tileDimension / 2
-						int worldY = tileDimension * row + tileDimension / 2;
+						int worldY = tileDimensionHeight * row + tileDimensionHeight / 2;
 						//得到每个小瓦片的中心位置(worldX,worldY)
 
 						//得到离那个中心点最近的瓦片的位置信息（坐标）
