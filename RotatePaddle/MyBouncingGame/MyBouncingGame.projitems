@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{BD548691-D37B-43AC-816E-B02DE90DF0BB}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MyBouncingGame</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GameAppDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\BallEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\PhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ConstantData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\PaddleEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\TouchScreenInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GamePlayScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\SplashScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GameStartScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Layers\PopUpLayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\BrickEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Util\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Entity\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Layers\" />
+  </ItemGroup>
+</Project>
