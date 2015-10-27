@@ -14,13 +14,15 @@ namespace MyBouncingGame.Entity
 		public bool AccelerateState=false;
 
 		private CCRect rotatedBallRect;
-		private CCRect flatPaddlerect;
+		private CCRect flatPaddleRect;
 		private float rotatedX;
 		private float rotatedY;
 		CCDrawNode draw=new CCDrawNode();
 		CCLayer gamelayer;
 
-		//float VelocityAngle;
+		float VelocityAngle;
+		float Xtemp;
+		float Ytemp;
 
 		ConstantData mData;
 
@@ -67,13 +69,15 @@ namespace MyBouncingGame.Entity
 				XVelocity = 30;
 			}
 
-//			XVelocity = (float)Math.Cos (VelocityAngle) * XVelocity - (float)Math.Sin (VelocityAngle) * YVelocity;
-//			YVelocity = (float)Math.Sin (VelocityAngle) * XVelocity + (float)Math.Cos (VelocityAngle) * YVelocity;
-//
-//			if (YVelocity < 10) {
-//
-//				YVelocity = 100;
-//			} 
+			Xtemp = XVelocity;
+			Ytemp = YVelocity;
+
+			XVelocity = (float)Math.Cos (VelocityAngle) * Xtemp - (float)Math.Sin (VelocityAngle) * Ytemp;
+			YVelocity = (float)Math.Sin (VelocityAngle) * Xtemp + (float)Math.Cos (VelocityAngle) * Ytemp;
+
+			if (YVelocity < 350) {
+				YVelocity = 350;
+			} 
 
 			CCSimpleAudioEngine.SharedEngine.PlayEffect ("BallCollideHigh.wav");
 		}
@@ -89,26 +93,26 @@ namespace MyBouncingGame.Entity
 		public bool isCollideWithRotatedPaddle(PaddleEntity mPaddle, float angle)
 		{
 			bool collide=false;
-//			if (Math.Abs (angle) > 45) {
-//				VelocityAngle = -angle / 3;
-//			} else {
-//				VelocityAngle = -angle/2;
-//			}
+			if (Math.Abs (angle) > 45) {
+				VelocityAngle = -angle / 3;
+			} else {
+				VelocityAngle = -angle/2;
+			}
 
 			rotatedX = (float)Math.Cos (angle) * (this.PositionX-mPaddle.PositionX) - (float)Math.Sin (angle) * (this.PositionY-mPaddle.PositionY)+mPaddle.PositionX;
 			rotatedY = (float)Math.Sin (angle) * (this.PositionX-mPaddle.PositionX) + (float)Math.Cos (angle) * (this.PositionY-mPaddle.PositionY)+mPaddle.PositionY;
 
 			rotatedBallRect = new CCRect (rotatedX-this.BoundingWidth/2, rotatedY-this.BoundingHeight/2, this.BoundingWidth, this.BoundingHeight);
-			flatPaddlerect = new CCRect (mPaddle.PositionX-mPaddle.flatBoundingBoxWidth/2, 50f-mPaddle.flatBoundingBoxHeight/2, mPaddle.flatBoundingBoxWidth, mPaddle.flatBoundingBoxHeight);
+			flatPaddleRect = new CCRect (mPaddle.PositionX-mPaddle.flatBoundingBoxWidth/2, 50f-mPaddle.flatBoundingBoxHeight/2, mPaddle.flatBoundingBoxWidth, mPaddle.flatBoundingBoxHeight);
 	
-			collide = rotatedBallRect.IntersectsRect (flatPaddlerect);
+			collide = BallPaddleRectIntersects (rotatedBallRect, flatPaddleRect);
 
 
-			if (rotatedBallRect.Center.Y < flatPaddlerect.Center.Y) 
+			if (rotatedBallRect.Center.Y < flatPaddleRect.Center.Y) 
 			{
 				collide = false;
 			}
-			if (rotatedBallRect.Center.X < (flatPaddlerect.Center.X - mPaddle.flatBoundingBoxWidth / 2)) 
+			if (rotatedBallRect.Center.X < (flatPaddleRect.Center.X - mPaddle.flatBoundingBoxWidth / 2)) 
 			{
 				collide = false;
 			}
@@ -118,32 +122,26 @@ namespace MyBouncingGame.Entity
 				
 
 
-//			if (collide) {
-//
+			if (collide) {
+
 //				Console.WriteLine("X: "+(mPaddle.PositionX-mPaddle.flatBoundingBoxWidth/2).ToString());
 //				Console.WriteLine("Y: "+(50f-mPaddle.flatBoundingBoxHeight/2).ToString());
 //				Console.WriteLine("width: "+mPaddle.flatBoundingBoxWidth.ToString());
 //				Console.WriteLine("height: "+mPaddle.flatBoundingBoxHeight.ToString());
-//				Console.WriteLine ("-------------------------------------");
-//
-//				gamelayer.RemoveChild (draw);
-//				draw = new CCDrawNode ();
-//				draw.DrawRect (rotatedBallRect,new CCColor4B(0,0,0));
-//				draw.DrawRect (flatPaddlerect, new CCColor4B(0,0,0));
-//
-//				gamelayer.AddChild (draw);
-//
-//
-//				var delayAdd = new Action (delegate() {
-//					gamelayer.AddChild (draw);
-//				});
-//					
-//				Thread.Sleep (3000);
-//
-//
-//				delayAdd ();
-//			
-//			}
+				Console.WriteLine("ball: "+rotatedBallRect.MinY.ToString());
+				Console.WriteLine ("paddle: "+flatPaddleRect.MaxY.ToString ());
+
+				Console.WriteLine ("-------------------------------------");
+
+				gamelayer.RemoveChild (draw);
+				draw = new CCDrawNode ();
+				draw.DrawRect (rotatedBallRect,new CCColor4B(0,0,0));
+				draw.DrawRect (flatPaddleRect, new CCColor4B(0,0,0));
+
+				gamelayer.AddChild (draw);
+
+				//Thread.Sleep (1000);
+			}
 
 			return collide;
 		}
