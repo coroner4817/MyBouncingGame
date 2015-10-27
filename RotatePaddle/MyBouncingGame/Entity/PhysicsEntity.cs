@@ -72,6 +72,15 @@ namespace MyBouncingGame.Entity
 			return this.sprite.BoundingBoxTransformedToWorld.IntersectsRect (other.sprite.BoundingBoxTransformedToWorld);
 		}
 
+		public bool BallPaddleRectIntersects(CCRect r1, CCRect r2)
+		{
+			if (r1.MinY < r2.MaxY) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 	}
 }
 

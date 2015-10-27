@@ -27,6 +27,9 @@ namespace MyBouncingGame.Scenes
 		CCLabel scoreLabel;
 		CCLabel deathRestartLabel;
 
+		CCLabel debugLabel1;
+		CCLabel debugLabel2;
+
 		int delayCount=0;
 		int beginCount=0;
 
@@ -40,7 +43,7 @@ namespace MyBouncingGame.Scenes
 		BrickEntity brick;
 
 		TouchScreenInput input;
-		float scheduleTime;
+
 
 		public GamePlayScene (CCWindow mainWindow) : base(mainWindow)
 		{
@@ -166,6 +169,19 @@ namespace MyBouncingGame.Scenes
 			scoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;
 			hudLayer.AddChild (scoreLabel);
 
+			//add debug Label
+			debugLabel1 = new CCLabel ("Y velocity: ", "fonts/arial-22", 20, CCLabelFormat.SystemFont);
+			debugLabel1.PositionX = gameplayLayer.VisibleBoundsWorldspace.LowerLeft.X+50.0f;
+			debugLabel1.PositionY = gameplayLayer.VisibleBoundsWorldspace.LowerLeft.Y+50.0f;
+			debugLabel1.AnchorPoint = CCPoint.AnchorUpperLeft;
+			hudLayer.AddChild (debugLabel1);
+
+			debugLabel2 = new CCLabel ("X velocity: ", "fonts/arial-22", 20, CCLabelFormat.SystemFont);
+			debugLabel2.PositionX = gameplayLayer.VisibleBoundsWorldspace.LowerLeft.X+50.0f;
+			debugLabel2.PositionY = gameplayLayer.VisibleBoundsWorldspace.LowerLeft.Y+80.0f;
+			debugLabel2.AnchorPoint = CCPoint.AnchorUpperLeft;
+			hudLayer.AddChild (debugLabel2);
+
 		}
 
 		private void AddEntity()
@@ -187,7 +203,7 @@ namespace MyBouncingGame.Scenes
 			//Console.WriteLine ("GamePlay Schedule Running!!!!!!!!!");
 			beginCount++;
 
-			scheduleTime = frameTimeInSeconds;
+			PerformDebug ();
 
 			if (beginCountFinishFlag == false) {
 			
@@ -215,6 +231,13 @@ namespace MyBouncingGame.Scenes
 			}
 
 			HandleBackKeyPress ();
+
+		}
+
+		void PerformDebug()
+		{
+			debugLabel1.Text = "Y velocity: " + mBall.YVelocity.ToString ();
+			debugLabel2.Text = "X velocity: " + mBall.XVelocity.ToString ();
 
 		}
 
@@ -327,6 +350,9 @@ namespace MyBouncingGame.Scenes
 
 				foreach (var brick in mBrickList) {
 					brick.handleBrickScrollDown ();
+					if (brick.PositionY < -5) {
+						deathFlag = true;
+					}
 				}
 				scrollCount++;
 			}
@@ -392,6 +418,8 @@ namespace MyBouncingGame.Scenes
 			
 		private void HandleDeath()
 		{
+			gameplayLayer.RemoveChild (mBall);
+
 			delayCount++;
 
 			if (delayCount == 1)
